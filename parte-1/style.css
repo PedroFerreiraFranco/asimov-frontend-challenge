@@ -737,7 +737,7 @@ header {
 }
 
 .step-title {
-  font-size: 26px;
+  font-size: 30px;
   font-weight: 500;
   line-height: 1.1;
   color: var(--dark);
@@ -759,7 +759,7 @@ header {
 }
 
 .process-step-content {
-  border-top: 1px solid rgba(25, 26, 35, 0.4);
+  border-top: 1px solid rgb(0, 0, 0);
   padding-top: 20px;
 }
 
@@ -793,8 +793,15 @@ header {
     max-width: 292px;
   }
 
+  .working-process-steps {
+    max-width: 1234px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
   .process-step {
     padding: 41px 60px;
+    width: 100%;
   }
 
   .process-step-title-wrap {
@@ -806,7 +813,7 @@ header {
   }
 
   .step-title {
-    font-size: 40px;
+    font-size: 30px;
     line-height: 1;
   }
 
@@ -823,6 +830,10 @@ header {
   .process-step-content p {
     font-size: 18px;
     line-height: 1.25;
+  }
+
+  .process-step-open {
+    min-height: 279px;
   }
 
   .process-step-closed {
