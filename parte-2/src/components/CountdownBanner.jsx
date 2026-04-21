@@ -4,17 +4,11 @@ import { Terminal } from 'lucide-react'
 
 const JB = "'JetBrains Mono', monospace"
 
-/* Persist the 30-day target in localStorage so it survives page refreshes */
+/* Fixed deadline: 30/04/2026 at 23:59:59 */
+const DEADLINE = new Date('2026-04-30T23:59:59').getTime()
+
 function getTarget() {
-  try {
-    const stored = localStorage.getItem('asimov_deadline')
-    if (stored) return new Date(stored)
-    const t = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
-    localStorage.setItem('asimov_deadline', t.toISOString())
-    return t
-  } catch {
-    return new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
-  }
+  return new Date(DEADLINE)
 }
 
 function getRemaining(target) {
@@ -76,15 +70,25 @@ export default function CountdownBanner() {
     >
       {/* Chrome bar */}
       <div
-        className="flex items-center gap-1.5 px-4 py-2 border-b border-white/[0.05] bg-black/25"
+        className="flex items-center justify-between px-4 py-2 border-b border-white/[0.05] bg-black/25"
         style={{ fontFamily: JB }}
       >
-        <span className="w-2 h-2 rounded-full bg-red-500/60" />
-        <span className="w-2 h-2 rounded-full bg-yellow-400/60" />
-        <span className="w-2 h-2 rounded-full bg-green-500/60" />
-        <Terminal size={11} className="ml-2 text-white/20" />
-        <span className="text-[10px] text-white/25 ml-1 truncate">
-          asimov@academy:~$ watch --interval=1 matriculas_2026
+        <div className="flex items-center gap-1.5">
+          <span className="w-2 h-2 rounded-full bg-red-500/60" />
+          <span className="w-2 h-2 rounded-full bg-yellow-400/60" />
+          <span className="w-2 h-2 rounded-full bg-green-500/60" />
+          <Terminal size={11} className="ml-2 text-white/20" />
+          <span className="text-[10px] text-white/25 ml-1 truncate">
+            asimov@academy:~$ watch --interval=1 matriculas_2026
+          </span>
+        </div>
+
+        {/* Fixed deadline notice */}
+        <span
+          className="text-[9px] px-2 py-1 rounded text-yellow-400/80"
+          style={{ background: 'rgba(255,212,59,0.08)', border: '0.5px solid rgba(255,212,59,0.18)' }}
+        >
+          ⏰ Prazo: 30/04/2026
         </span>
       </div>
 
@@ -105,15 +109,34 @@ export default function CountdownBanner() {
           />
         </div>
 
-        {/* Timer */}
-        <div className="flex items-end gap-2 sm:gap-3 flex-shrink-0">
-          <Digit value={time.d} label="dias" />
-          <span className="text-[#3776AB]/35 text-lg pb-5" style={{ fontFamily: JB }}>:</span>
-          <Digit value={time.h} label="horas" />
-          <span className="text-[#3776AB]/35 text-lg pb-5" style={{ fontFamily: JB }}>:</span>
-          <Digit value={time.m} label="min" />
-          <span className="text-[#3776AB]/35 text-lg pb-5" style={{ fontFamily: JB }}>:</span>
-          <Digit value={time.s} label="seg" />
+        {/* Timer + Fixed date badge */}
+        <div className="flex items-end gap-3 flex-shrink-0">
+          <div className="flex items-end gap-2 sm:gap-3">
+            <Digit value={time.d} label="dias" />
+            <span className="text-[#3776AB]/35 text-lg pb-5" style={{ fontFamily: JB }}>:</span>
+            <Digit value={time.h} label="horas" />
+            <span className="text-[#3776AB]/35 text-lg pb-5" style={{ fontFamily: JB }}>:</span>
+            <Digit value={time.m} label="min" />
+            <span className="text-[#3776AB]/35 text-lg pb-5" style={{ fontFamily: JB }}>:</span>
+            <Digit value={time.s} label="seg" />
+          </div>
+
+          {/* Fixed date indicator */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg flex-shrink-0"
+            style={{
+              background: 'rgba(255,212,59,0.10)',
+              border: '0.5px solid rgba(255,212,59,0.25)',
+            }}
+            title="Data limite: 30 de Abril de 2026"
+          >
+            <span style={{ fontSize: 10, color: '#FFD43B', fontFamily: JB, fontWeight: 600 }}>
+              📅 30/04
+            </span>
+          </motion.div>
         </div>
       </div>
     </motion.div>
