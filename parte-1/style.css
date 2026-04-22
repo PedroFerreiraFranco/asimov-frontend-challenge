@@ -641,8 +641,40 @@ header {
   opacity: 0.3;
 }
 
+@media (max-width: 1023px) {
+  .case-studies-container {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0 20px 8px 0;
+    flex-direction: row;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .case-studies-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .case-study-item {
+    background-color: var(--dark);
+    border-radius: 45px;
+    padding: 42px 30px;
+    min-width: min(320px, 86vw);
+    flex: 0 0 min(320px, 86vw);
+    scroll-snap-align: start;
+  }
+
+  .case-study-divider {
+    display: none;
+  }
+}
+
 @media (min-width: 1024px) {
   .case-studies-container {
+    background-color: var(--dark);
+    border-radius: 45px;
     flex-direction: row;
     padding: 0;
     gap: 0;
@@ -1051,6 +1083,10 @@ header {
   gap: 40px;
 }
 
+.testimonials-track .testimonial-item:not(:first-child) {
+  display: none;
+}
+
 .testimonial-item {
   display: flex;
   flex-direction: column;
@@ -1108,8 +1144,9 @@ header {
   margin-top: 40px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 24px;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0;
 }
 
 .testimonials-arrow {
@@ -1294,6 +1331,10 @@ header {
     height: 335px;
     flex: 0 0 606px;
     gap: 20px;
+  }
+
+  .testimonials-track .testimonial-item:not(:first-child) {
+    display: flex;
   }
 
   .testimonials-track .testimonial-item:first-child {
