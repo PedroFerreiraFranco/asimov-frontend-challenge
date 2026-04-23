@@ -1732,12 +1732,10 @@ header {
 }
 
 @media (max-width: 767px) {
-  /* 1º e 4º cards (SEO e Email) -> Fundo VERDE */
   .services-grid .service-card:nth-child(3n + 1) .card-content h3 span {
     background-color: var(--green) !important;
   }
 
-  /* 2º, 3º, 5º e 6º cards (PPC, Social, Content, Analytics) -> Fundo BRANCO */
   .services-grid .service-card:nth-child(3n + 2) .card-content h3 span,
   .services-grid .service-card:nth-child(3n + 3) .card-content h3 span {
     background-color: var(--white) !important;
